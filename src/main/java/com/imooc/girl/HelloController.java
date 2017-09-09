@@ -14,7 +14,7 @@ public class HelloController {
     private GirlProperties girlproperties;
 
 
-    @RequestMapping(value = "/hello",method = RequestMethod.GET) //访问的目录，用GET的方式访问
+    @RequestMapping(value = {"/hello","/hi"},method = RequestMethod.POST) //访问的目录，用GET的方式访问
     public String Say(){
 
         return girlproperties.getCupSize();
