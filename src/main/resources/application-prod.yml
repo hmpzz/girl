@@ -1,6 +1,6 @@
 server:
   port: 8081
-  context-path: "/context"
+  #ontext-path: "/context"
 girl:
   cupSize: F
   age: 18
