@@ -4,7 +4,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/dbgirl?useSSL=true
+    url: jdbc:mysql://localhost:3306/girl?useSSL=true
     username: root
     password: 801023
 
@@ -12,3 +12,4 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+

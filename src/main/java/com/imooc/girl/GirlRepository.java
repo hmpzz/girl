@@ -2,6 +2,8 @@ package com.imooc.girl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GirlRepository extends JpaRepository<Girl,Integer>{
+import java.util.List;
 
+public interface GirlRepository extends JpaRepository<Girl,Integer>{
+    public List<Girl> findByAge (int age);
 }
