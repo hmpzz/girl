@@ -1,10 +1,7 @@
 package com.imooc.girl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,7 +27,6 @@ public class GirlController {
      * @param age
      * @return
      */
-
     @PostMapping(value="/girls")
     public Girl girlAdd(@RequestParam("cupSize") String cupSize,
                           @RequestParam("age") int age){
@@ -39,4 +35,39 @@ public class GirlController {
         girl.setAge(age);
         return girlRepository.save(girl);
     }
+
+    /**
+     * 返回某个ID值的女生的信息
+     * @param id
+     * @return
+     */
+    @GetMapping(value="/girls/{id}")
+    public Girl girlFoundOne(@PathVariable("id") int id){
+        return girlRepository.findOne(id);
+    }
+
+    @PutMapping(value="/girls/{id}")
+    public Girl girlUpdate(@PathVariable("id") int id,
+                           @RequestParam("cupSize") String cupSize,
+                           @RequestParam("age") int age){
+        Girl girl=new Girl();
+        girl.setId(id);
+        girl.setAge(age);
+        girl.setCupSize(cupSize);
+        return girlRepository.save(girl);
+    }
+
+    @DeleteMapping(value="/girls/{id}")
+    public void girlDelete(@PathVariable("id") int id){
+        girlRepository.delete(id);
+    }
+
+
+    @GetMapping(value="/girls/age/{age}")
+    public List<Girl> grilListByAge(@PathVariable("age") int age){
+            return girlRepository.findByAge(age);
+    }
+
+
+
 }
