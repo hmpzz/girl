@@ -1,4 +1,4 @@
-package com.imooc.girl;
+package com.imooc.girl.controller;
 
 import com.imooc.girl.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
