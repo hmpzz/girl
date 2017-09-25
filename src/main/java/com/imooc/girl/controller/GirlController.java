@@ -1,7 +1,7 @@
 package com.imooc.girl.controller;
 
-import com.imooc.girl.aspect.HttpAspect;
 import com.imooc.girl.domain.Girl;
+import com.imooc.girl.domain.Result;
 import com.imooc.girl.repository.GirlRepository;
 import com.imooc.girl.service.GirlService;
 import org.slf4j.Logger;
@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import com.imooc.girl.utils.ResultUtil;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -42,16 +43,21 @@ public class GirlController {
      * @return
      */
     @PostMapping(value="/girls")
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult){
-
+    public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult){
+        Result result=new Result();
 
         if (bindingResult.hasErrors()){
-            logger.info(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+
+
         }
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
-        return girlRepository.save(girl);
+        girl.setMoney(girl.getMoney());
+
+        Result success = ResultUtil.success(girlRepository.save(girl));
+
+        return result;
+        //return girlRepository.save(girl);
     }
 
     /**
@@ -90,6 +96,11 @@ public class GirlController {
     @PostMapping(value="/girls/two")
     public void girlTwo(){
         girlService.insertTwo();
+    }
+
+    @GetMapping(value="girls/getAge/{id}")
+    public void getAge(@PathVariable("id") int id){
+        girlService.getAge(id);
     }
 
 }

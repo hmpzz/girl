@@ -42,11 +42,16 @@ public class HttpAspect {
         logger.info("args={}",joinPoint.getArgs());
     }
 
-    @AfterReturning(returning="object",pointcut="log()")
-    public void doAfter(Object object){
-        logger.info("response={}",object.toString());
-        //logger.info("22222");
+    @After("log()")
+    public void doAfter(){
 
+        logger.info("22222");
+
+    }
+
+    @AfterReturning(returning = "object",pointcut = "log()")
+    public void doAfterReturning(Object object){
+        //logger.info("response{}",object.toString());
     }
 
 }
