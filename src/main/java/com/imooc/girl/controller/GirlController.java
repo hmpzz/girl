@@ -44,20 +44,19 @@ public class GirlController {
      */
     @PostMapping(value="/girls")
     public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult){
-        Result result=new Result();
+
 
         if (bindingResult.hasErrors()){
-
-
+            return null;
+//            return  ResultUtil.error(1,    bindingResult.getFieldError().getDefaultMessage());
         }
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
         girl.setMoney(girl.getMoney());
 
-        Result success = ResultUtil.success(girlRepository.save(girl));
+        return ResultUtil.success(girlRepository.save(girl));
 
-        return result;
-        //return girlRepository.save(girl);
+
     }
 
     /**
@@ -94,12 +93,13 @@ public class GirlController {
 
 
     @PostMapping(value="/girls/two")
+
     public void girlTwo(){
         girlService.insertTwo();
     }
 
     @GetMapping(value="girls/getAge/{id}")
-    public void getAge(@PathVariable("id") int id){
+    public void getAge(@PathVariable("id") int id) throws Exception{
         girlService.getAge(id);
     }
 
