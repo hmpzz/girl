@@ -39,4 +39,11 @@ public class GirlService {
             //返回你可能在上初中
         }
     }
+
+    /*
+    * 通过ID查询g个女生的信息
+    * */
+    public  Girl findOne (int id){
+        return girlRepository.findOne(id);
+    }
 }
